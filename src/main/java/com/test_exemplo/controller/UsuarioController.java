@@ -31,10 +31,8 @@ public class UsuarioController {
     public ModelAndView registerUser(@ModelAttribute UsuarioDTO usuarioDTO) {
         try{
             usuarioService.registerUser(usuarioDTO);
-            System.out.println("Nome Completo: " + usuarioDTO.getFullName() + "\nEmail: " + usuarioDTO.getEmail());
             return this.getUserForms();
         } catch (Exception e) {
-            e.printStackTrace();
             return this.geterroUserForms();
         }
     }
