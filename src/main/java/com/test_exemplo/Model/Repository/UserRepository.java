@@ -20,15 +20,24 @@ public class UserRepository {
     }
 
     public void insertUser(Usuario usuario) {
+        // SQL CORRIGIDO (assumindo que sua tabela 'usuario' tem essas colunas)
         String sql = """
+                INSERT INTO usuario (email, cpf, rg) 
+                VALUES (?, ?, ?)
                 """;
+
         try (Connection connection = dataSource.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
 
-            stmt.setString(2, usuario.getEmail());
+            // Índices começam em 1
+            stmt.setString(1, usuario.getEmail());
+            stmt.setString(2, usuario.getCpf());
+            stmt.setString(3, usuario.getRg());
 
             stmt.execute();
         } catch (SQLException e) {
+            // É uma boa prática relançar a exceção para o Service tratar
+            throw new RuntimeException("Erro ao inserir usuário no banco de dados", e);
         }
     }
 }
