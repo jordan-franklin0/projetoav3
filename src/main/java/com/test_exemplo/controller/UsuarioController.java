@@ -12,6 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UsuarioController {
 
+    @GetMapping("/recuperarAcesso")
+    public ModelAndView getRecuperarAcessoPage() {
+        ModelAndView modelAndView = new ModelAndView("recuperarAcesso");
+        return modelAndView;
+    }
+
     @Autowired
     UsuarioService usuarioService;
 
@@ -52,5 +58,6 @@ public class UsuarioController {
     public ModelAndView geterroUserForms() {
         ModelAndView modelAndView = new ModelAndView("erroUserForms");
         return modelAndView;
+
     }
 }
