@@ -13,11 +13,11 @@
 <header>
     <img class="logo" th:src="@{/css/fotos/logo-.png}" alt="Conectando Gerações">
     <nav class="navigation">
-        <a href="#">Home</a>
+        <a th:href="@{/index}">Home</a>
         <a href="#">Módulos</a>
         <a href="#">Suporte</a>
         <a href="#">Perfil</a>
-        <button class="btnLogin-popup">Login</button>
+        <a th:href="@{/login}" class="btnLogin-popup">Login</a>
     </nav>
 </header>
 
