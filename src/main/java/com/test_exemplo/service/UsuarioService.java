@@ -45,6 +45,11 @@ public class UsuarioService {
         usuario.setEmail(usuarioDTO.getEmail());
         usuario.setCpf(usuarioDTO.getCpf());
         usuario.setRg(usuarioDTO.getRg());
+        usuario.setNome(usuarioDTO.getNome());
+        usuario.setDataNascimento(usuarioDTO.getDataNascimento());
+        usuario.setGenero(usuarioDTO.getGenero());
+        usuario.setCelular(usuarioDTO.getCelular());
+        usuario.setSenha(usuarioDTO.getSenha());
 
         return usuario;
     }
