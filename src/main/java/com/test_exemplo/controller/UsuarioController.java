@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 public class UsuarioController {
 
@@ -23,7 +22,7 @@ public class UsuarioController {
         return modelAndView;
     }
 
-    @GetMapping("/login")
+    @GetMapping({"/", "/login"})
     public ModelAndView getLoginPage() {
         ModelAndView modelAndView = new ModelAndView("login");
         return modelAndView;
@@ -55,4 +54,3 @@ public class UsuarioController {
         return modelAndView;
     }
 }
-
