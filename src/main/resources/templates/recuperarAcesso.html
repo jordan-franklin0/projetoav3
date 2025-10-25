@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar Acesso</title>
-    <link rel="stylesheet" href="main.css">
+    <title>Inclusão digital</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 
 <body>
 
 <header>
-    <img class="logo" src="fotos/logo-.png" alt="Conectando Gerações">
+    <img class="logo" th:src="@{/css/fotos/logo-.png}" alt="Conectando Gerações">
     <nav class="navigation">
         <a href="#">Home</a>
         <a href="#">Módulos</a>
