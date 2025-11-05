@@ -17,6 +17,12 @@ public class UsuarioController {
         ModelAndView modelAndView = new ModelAndView("recuperarAcesso");
         return modelAndView;
     }
+    
+    @GetMapping("/emailEnviado.html")
+    public ModelAndView getEmailEnviadoPage() {
+        ModelAndView modelAndView = new ModelAndView("emailEnviado");
+        return modelAndView;
+    }
 
     @Autowired
     UsuarioService usuarioService;
