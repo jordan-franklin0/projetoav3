@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Usuário</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <style>
+    /* Estilos básicos para o container de detalhes */
+    .details-box {
+        margin-top: 50px;
+        width: 450px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .detail-item { margin-bottom: 10px; padding: 5px; border-bottom: 1px dotted #ccc; }
+    .detail-item strong { display: inline-block; width: 150px; }
+    .section-title { margin-top: 20px; border-bottom: 2px solid #162938; padding-bottom: 5px; font-weight: bold; }
+    .action-buttons { margin-top: 20px; display: flex; justify-content: space-between; }
+    .action-buttons button, .action-buttons a { margin: 0 5px; }
+  </style>
+</head>
+<body>
+<header>
+  <img class="logo" th:src="@{/css/fotos/logo-.png}" alt="Conectando Gerações">
+  <nav class="navigation">
+    <a th:href="@{/index}">Home</a>
+    <a href="#">Módulos</a>
+    <a th:href="@{/usuarios}" style="font-weight: bold;">Usuários (CRUD)</a>
+    <a th:href="@{/login}" class="btnLogin-popup">Login</a>
+  </nav>
+</header>
+<div class="wrapper details-box">
+  <div th:if="${erro}" style="color: red; text-align: center;">
+    <p th:text="${erro}"></p>
+    <a th:href="@{/usuarios}" class="btn" style="margin-top: 10px; background: #555; display: inline-block;">Voltar à Lista</a>
+  </div>
+
+  <div th:unless="${erro}">
+    <h2>Detalhes do Usuário</h2>
+
+    <div class="section-title">Dados Pessoais</div>
+    <div class="detail-item"><strong>Nome:</strong> <span th:text="${usuario.nome}"></span></div>
+    <div class="detail-item"><strong>CPF:</strong> <span th:text="${usuario.cpf}"></span></div>
+    <div class="detail-item"><strong>Email:</strong> <span th:text="${usuario.email}"></span></div>
+    <div class="detail-item"><strong>RG:</strong> <span th:text="${usuario.rg}"></span></div>
+    <div class="detail-item"><strong>Nascimento:</strong> <span th:text="${usuario.dataNascimento}"></span></div>
+    <div class="detail-item"><strong>Gênero:</strong> <span th:text="${usuario.genero}"></span></div>
+    <div class="detail-item"><strong>Celular:</strong> <span th:text="${usuario.celular}"></span></div>
+
+    <div class="section-title" th:if="${endereco}">Endereço</div>
+    <div th:if="${endereco}">
+      <div class="detail-item"><strong>CEP:</strong> <span th:text="${endereco.cep}"></span></div>
+      <div class="detail-item"><strong>Logradouro:</strong> <span th:text="${endereco.logradouro}"></span></div>
+      <div class="detail-item"><strong>Número:</strong> <span th:text="${endereco.numero}"></span></div>
+      <div class="detail-item"><strong>Bairro:</strong> <span th:text="${endereco.bairro}"></span></div>
+      <div class="detail-item"><strong>Município:</strong> <span th:text="${endereco.municipio}"></span></div>
+      <div class="detail-item"><strong>Estado:</strong> <span th:text="${endereco.estado}"></span></div>
+      <div class="detail-item"><strong>Complemento:</strong> <span th:text="${endereco.complemento}"></span></div>
+    </div>
+    <div th:unless="${endereco}">
+      <p style="text-align: center; color: gray;">Endereço não cadastrado.</p>
+    </div>
+
+    <div class="action-buttons">
+      <a th:href="@{/usuario/editar/{cpf}(cpf=${usuario.cpf})}" class="btn" style="width: 45%; margin: 0; text-align: center; line-height: 45px;">Editar</a>
+
+      <form th:action="@{/usuario/deletar/{cpf}(cpf=${usuario.cpf})}" method="post" style="width: 45%; margin: 0;">
+        <button type="submit" class="btn" style="background: red; width: 100%;"
+                onclick="return confirm('Tem certeza que deseja DELETAR este usuário e seu endereço? Esta ação é irreversível.')">
+          Deletar
+        </button>
+      </form>
+    </div>
+    <a th:href="@{/usuarios}" class="btn-secondary" style="margin-top: 10px; display: block; text-align: center; line-height: 45px;">Voltar à Lista</a>
+  </div>
+</div>
+</body>
+</html>

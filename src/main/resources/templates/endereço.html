@@ -1,63 +1,65 @@
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inclusão digital</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
-
 <body>
-
 <header>
-    <img class="logo" th:src="@{/css/fotos/logo-.png}" alt="Conectando Gerações">
+    <h2 class="logo">LOGO</h2>
     <nav class="navigation">
-        <a href="#">Home</a>
-        <a href="#">Módulos</a>
-        <a href="#">Suporte</a>
-        <a href="#">Perfil</a>
-        <button class="btnLogin-popup">Login</button>
+        <a th:href="@{/index}">Home</a>
+        <a th:href="@{/login}">Login</a>
     </nav>
 </header>
 
 <div class="wrapper">
     <div class="form-box address">
         <h2>Endereço</h2>
-        <form action="login.html">
+
+        <div th:if="${erro}" style="color: red; text-align: center; margin-bottom: 10px;">
+            <p th:text="${erro}"></p>
+        </div>
+
+        <form th:action="@{/endereco}" th:object="${enderecoDTO}" method="post">
+
+            <input type="hidden" th:field="*{usuarioId}" />
+
             <div class="input-box">
                 <span class="icon"><ion-icon name="map-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{cep}" required>
                 <label>CEP</label>
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="location-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{logradouro}" required>
                 <label>Logradouro</label>
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="pin-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{numero}" required>
                 <label>Número</label>
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{bairro}" required>
                 <label>Bairro</label>
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="location-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{municipio}" required>
                 <label>Município</label>
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="map-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{estado}">
                 <label>Estado</label>
             </div>
             <div class="input-box">
                 <span class="icon"><ion-icon name="information-circle-outline"></ion-icon></span>
-                <input type="text" required>
+                <input type="text" th:field="*{complemento}">
                 <label>Complemento</label>
             </div>
             <button type="submit" class="btn">Cadastrar Endereço</button>
@@ -65,10 +67,8 @@
     </div>
 </div>
 
-
-<script src="script.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script th:src="@{/templates/script.js}"></script>
 </body>
-
 </html>

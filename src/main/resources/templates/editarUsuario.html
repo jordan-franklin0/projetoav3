@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<header>
+    <img class="logo" th:src="@{/css/fotos/logo-.png}" alt="Conectando Gerações">
+    <nav class="navigation">
+        <a th:href="@{/index}">Home</a>
+        <a href="#">Módulos</a>
+        <a th:href="@{/usuarios}" style="font-weight: bold;">Usuários (CRUD)</a>
+        <a th:href="@{/login}" class="btnLogin-popup">Login</a>
+    </nav>
+</header>
+<div class="wrapper" style="width: 600px;">
+    <div class="form-box register">
+        <h2>Editar Cadastro e Endereço</h2>
+
+        <div th:if="${erro}" style="color: red; text-align: center; margin-bottom: 10px;">
+            <p th:text="${erro}"></p>
+        </div>
+
+        <form th:action="@{/usuario/editar}" method="post">
+
+            <h3>Dados Pessoais</h3>
+            <div th:object="${usuarioDTO}">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <input type="text" th:field="*{nome}" required>
+                    <label>Nome</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="calendar-outline"></ion-icon></span>
+                    <input type="text" th:field="*{dataNascimento}" required> <label>Data de nascimento</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="card-outline"></ion-icon></span>
+                    <input type="text" th:field="*{cpf}" readonly style="background-color: #eee;">
+                    <label>CPF (Não editável)</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="transgender-outline"></ion-icon></span>
+                    <input type="text" th:field="*{genero}" required>
+                    <label>Gênero</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="id-card-outline"></ion-icon></span>
+                    <input type="text" th:field="*{rg}" required>
+                    <label>RG</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+                    <input type="email" th:field="*{email}" required>
+                    <label>E-mail</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" th:field="*{senha}" required>
+                    <label>Nova Senha (Obrigatório para Atualizar)</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
+                    <input type="password" th:field="*{confirmacaoSenha}" required> <label>Confirmação de Senha</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="call-outline"></ion-icon></span>
+                    <input type="tel" th:field="*{celular}" required>
+                    <label>Celular</label>
+                </div>
+            </div>
+
+            <hr style="margin: 20px 0;">
+
+            <h3>Dados de Endereço</h3>
+            <div th:object="${enderecoDTO}">
+                <input type="hidden" th:field="*{usuarioId}" />
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="map-outline"></ion-icon></span>
+                    <input type="text" th:field="*{cep}" required>
+                    <label>CEP</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="location-outline"></ion-icon></span>
+                    <input type="text" th:field="*{logradouro}" required>
+                    <label>Logradouro</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="pin-outline"></ion-icon></span>
+                    <input type="text" th:field="*{numero}" required>
+                    <label>Número</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
+                    <input type="text" th:field="*{bairro}" required>
+                    <label>Bairro</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="location-outline"></ion-icon></span>
+                    <input type="text" th:field="*{municipio}" required>
+                    <label>Município</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="map-outline"></ion-icon></span>
+                    <input type="text" th:field="*{estado}" required>
+                    <label>Estado</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="information-circle-outline"></ion-icon></span>
+                    <input type="text" th:field="*{complemento}">
+                    <label>Complemento</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Salvar Alterações</button>
+            <div class="login-register" style="margin-top: 10px;">
+                <p><a th:href="@{/usuario/{cpf}(cpf=${usuarioDTO.cpf})}" class="login-link">Cancelar e Voltar</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
